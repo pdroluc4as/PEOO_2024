@@ -64,7 +64,7 @@ class Horarios:
   @classmethod
   def salvar(cls):
     with open("horarios.json", mode="w") as arquivo:   # w - write
-      json.dump(cls.objetos, arquivo, default = Horario.to_json)
+      json.dump(cls.objetos, arquivo, indent=4, default = Horario.to_json)
 
   @classmethod
   def abrir(cls):

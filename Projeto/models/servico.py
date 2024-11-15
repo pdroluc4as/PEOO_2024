@@ -55,7 +55,7 @@ class Servicos:
   @classmethod
   def salvar(cls):
     with open("servicos.json", mode="w") as arquivo:   # w - write
-      json.dump(cls.objetos, arquivo, default = vars)
+      json.dump(cls.objetos, arquivo, indent=4, default = vars)
 
   @classmethod
   def abrir(cls):

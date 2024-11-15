@@ -8,14 +8,24 @@ import json
 
 # Modelo
 class Cliente:
+  
   def __init__(self, id, nome, email, fone, senha):
     self.id = id
     self.nome = nome
     self.email = email
     self.fone = fone
     self.senha = senha
+  
   def __str__(self):
     return f"{self.nome} - {self.email} - {self.fone}"
+  
+  def to_dict(self):
+    return {
+        'id': self.id,
+        'nome': self.nome,
+        'email': self.email,
+        'fone': self.fone
+    }
 
 # Persistência
 class Clientes:
@@ -64,7 +74,7 @@ class Clientes:
   @classmethod
   def salvar(cls):
     with open("clientes.json", mode="w") as arquivo:   # w - write
-      json.dump(cls.objetos, arquivo, default = vars)
+      json.dump(cls.objetos, arquivo, indent=4, default = vars)
 
   @classmethod
   def abrir(cls):
