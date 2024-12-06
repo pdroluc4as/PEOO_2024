@@ -39,11 +39,12 @@ class View:
     #CLIENTE
 
     #HORARIO
-    def horario_inserir(data, confirmado, id_cliente, id_servico):
+    def horario_inserir(data, confirmado, id_cliente, id_servico, id_profissional):
         c = Horario(0, data)
         c.confirmado = confirmado
         c.id_cliente = id_cliente
         c.id_servico = id_servico
+        c.id_profissional = id_profissional
         Horarios.inserir(c)
 
     def horario_listar():
@@ -56,11 +57,12 @@ class View:
             if h.data >= datetime.now() and h.id_cliente == None: disponiveis.append(h)
         return disponiveis   
 
-    def horario_atualizar(id, data, confirmado, id_cliente, id_servico):
+    def horario_atualizar(id, data, confirmado, id_cliente, id_servico, id_profissional):
         c = Horario(id, data)
         c.confirmado = confirmado
         c.id_cliente = id_cliente
         c.id_servico = id_servico
+        c.id_profissional = id_profissional
         Horarios.atualizar(c)
 
     def horario_excluir(id):
@@ -80,7 +82,7 @@ class View:
         x = di
         while x <= df:
             #cadastrar o horário x
-            View.horario_inserir(x, False, None, None)
+            View.horario_inserir(x, False, None, None, None)
             #passar para o próximo horário
             x = x + d
     #HORARIO
