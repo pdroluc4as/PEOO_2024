@@ -1,14 +1,18 @@
 from models.cliente import Cliente, Clientes
 from models.horario import Horario, Horarios
 from models.servico import Servico, Servicos
+from models.perfil import Perfil, Perfis
+from models.profissional import Profissional, Profissionais
 from datetime import datetime, timedelta
 
 class View:
+    #CRIAR ADMIN
     def cliente_admin():
         for c in View.cliente_listar():
             if c.email == "admin": return
         View.cliente_inserir("admin", "admin", "1234", "1234")
 
+    #CLIENTE
     def cliente_inserir(nome, email, fone, senha):
         c = Cliente(0, nome, email, fone, senha)
         Clientes.inserir(c)
@@ -32,7 +36,9 @@ class View:
             if c.email == email and c.senha == senha:
                 return {"id" : c.id, "nome" : c.nome }
         return None
+    #CLIENTE
 
+    #HORARIO
     def horario_inserir(data, confirmado, id_cliente, id_servico):
         c = Horario(0, data)
         c.confirmado = confirmado
@@ -77,7 +83,9 @@ class View:
             View.horario_inserir(x, False, None, None)
             #passar para o próximo horário
             x = x + d
+    #HORARIO
 
+    #SERVIÇO
     def servico_inserir(descricao, valor, duracao):
         c = Servico(0, descricao, valor, duracao)
         Servicos.inserir(c)
@@ -95,3 +103,44 @@ class View:
     def servico_excluir(id):
         c = Servico(id, "", 0, 0)
         Servicos.excluir(c)    
+    #SERVIÇO
+
+    #PROFISSIONAL
+    def profissional_inserir(nome, especialidade, conselho):
+        c = Profissional(0, nome, especialidade, conselho)
+        Profissionais.inserir(c)
+    
+    def profissional_listar():
+        return Profissionais.listar()    
+    
+    def profissional_listar_id(id):
+        return Profissionais.listar_id(id)    
+    
+    def profissional_atualizar(id, nome, especialidade, conselho):
+        c = Profissional(id, nome, especialidade, conselho)
+        Profissionais.atualizar(c)
+    
+    def profissional_excluir(id):
+        c = Profissional(id, "", "", "")
+        Profissionais.excluir(c) 
+    #PROFISSIONAL
+
+    #PERFIL
+    def perfil_inserir(nome, descricao, beneficios):
+        c = Perfil(0, nome, descricao, beneficios)
+        Perfis.inserir(c)
+    
+    def perfil_listar():
+        return Perfis.listar()    
+    
+    def perfil_listar_id(id):
+        return Perfis.listar_id(id)    
+    
+    def perfil_atualizar(id, nome, descricao, beneficios):
+        c = Perfil(id, nome, descricao, beneficios)
+        Perfis.atualizar(c)
+    
+    def perfil_excluir(id):
+        c = Perfil(id, "", "", "")
+        Perfis.excluir(c)
+    #PERFIL

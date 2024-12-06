@@ -5,6 +5,8 @@ from templates.abriragendaUI import AbrirAgendaUI
 from templates.abrircontaUI import AbrirContaUI
 from templates.listarhorarioUI import ListarHorarioUI
 from templates.loginUI import LoginUI
+from templates.manterprofissionalUI import ManterProfissionalUI
+from templates.manterperfilUI import ManterPerfilUI
 from views import View
 
 import streamlit as st
@@ -16,10 +18,12 @@ class IndexUI:
         if op == "Abrir Conta": AbrirContaUI.main()
                
     def menu_admin():            
-        op = st.sidebar.selectbox("Menu", ["Cadastro de Clientes", "Cadastro de Horários", "Cadastro de Serviços", "Abrir Agenda do Dia"])
+        op = st.sidebar.selectbox("Menu", ["Cadastro de Clientes", "Cadastro de Horários", "Cadastro de Serviços", "Cadastro de Profissionais", "Cadastro de Perfil", "Abrir Agenda do Dia"])
         if op == "Cadastro de Clientes": ManterClienteUI.main()
         if op == "Cadastro de Horários": ManterHorarioUI.main()
         if op == "Cadastro de Serviços": ManterServicoUI.main()
+        if op == "Cadastro de Profissionais": ManterProfissionalUI.main()
+        if op == "Cadastro de Perfil": ManterPerfilUI.main()
         if op == "Abrir Agenda do Dia": AbrirAgendaUI.main()
 
     def menu_cliente():
@@ -48,9 +52,10 @@ class IndexUI:
             IndexUI.sair_do_sistema() 
     
     def main():
-        # verifica a existe o usuário admin
+        # verifica a existencia do usuário admin
         View.cliente_admin()
         # monta o sidebar
         IndexUI.sidebar()
        
 IndexUI.main()
+
